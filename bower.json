@@ -1,0 +1,13 @@
+{
+  "name": "ThreePin",
+  "version": "1.0.0",
+  "main": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "socket.io-client": "~0.9.16"
+  }
+}
