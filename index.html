@@ -9,8 +9,21 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <section id="conf">
+            <input type="url" id="conf-url" name="conf-url" placeholder="Server Url">
+            <input type="text" id="conf-port" name="conf-port" placeholder="Server Port">
+            <button>Connect</button>
+        </section>
+
+        <section id="status"></section>
+
+        <section id="response">
+        </section>
 
     </body>
+    <script type="text/javascript" src="js/threepin.js"></script>
+    <script type="text/javascript" src="components/socket.io-client/dist/socket.io.min.js"></script>
 </html>
