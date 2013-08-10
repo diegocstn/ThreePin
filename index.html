@@ -9,16 +9,28 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
+        <h1>ThreePin - A Socket.IO client debugger</h1>
+
+        <section id="status" class="disconnected">
+            <div class="status-badge">
+                <ul class="status-pin">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </section>
+
         <section id="conf">
             <input type="url" id="conf-url" name="conf-url" placeholder="Server Url">
             <input type="text" id="conf-port" name="conf-port" placeholder="Server Port">
             <button>Connect</button>
         </section>
 
-        <section id="status"></section>
+
 
         <section id="response">
         </section>
