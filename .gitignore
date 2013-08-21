@@ -27,3 +27,6 @@ CVS
 *.swp
 *~
 *(Autosaved).rtfd/
+
+# npm modules
+.npm-modules/

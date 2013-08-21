@@ -1,4 +1,4 @@
 ThreePin
 ========
 
-A Node.JS and Socket.IO test environment
+A Node.JS and Socket.IO stress-free test environment

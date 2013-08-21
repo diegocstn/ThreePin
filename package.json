@@ -1,0 +1,31 @@
+{
+  "name": "ThreePin",
+  "version": "1.0.0",
+  "description": "A Node.JS and Socket.IO stress-free test environment",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dieguitoweb/ThreePin.git"
+  },
+  "keywords": [
+    "socket.io",
+    "test",
+    "socket.io",
+    "socket.io",
+    "client",
+    "test",
+    "socket.io",
+    "env"
+  ],
+  "devDependencies" : {
+                        "socket.io" : "1.0.0"
+  },
+  "dependencies" : {},
+  "author": "Diego Costantino",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "4b20f9e85c4530426e0338e5abd6754cbbc7f78c"
+}
