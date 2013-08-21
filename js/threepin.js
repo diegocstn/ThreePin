@@ -63,7 +63,6 @@ var ThreePin = (function(){
 		});
 	}
 
-	// TO-DO : usare classList per modificare status ui. funzione o parte o all'interno dell'handler?
 	function socketStatusHandler( newStatus ){
 		var connectionString = url+":"+port;
 
