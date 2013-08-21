@@ -8,13 +8,14 @@ var ThreePin = (function(){
 		port,
 		connect,
 		status,
-		$sectionStatus,
+		$statusSection,
 		DEBUG	= true,
 		STATUS	= {
 			CONNECTING		: 1,
 			CONNECTED		: 2,
 			DISCONNECTED	: 0
-		};
+		},
+		STATUS_LOOKUP = ['disconnected','connecting','connected'];
 
 	function log(arg){
 		if ( DEBUG ){
@@ -23,9 +24,10 @@ var ThreePin = (function(){
 	}
 
 	function init(){
-		$addressField	= $doc.querySelector('#conf-url');
-		$portField		= $doc.querySelector('#conf-port');
-		$connectBtn		= $doc.querySelector('#conf button');
+		$addressField	= $doc.querySelector( '#conf-url' );
+		$portField		= $doc.querySelector( '#conf-port' );
+		$connectBtn		= $doc.querySelector( '#conf button' );
+		$statusSection	= $doc.querySelector( '#status' );
 
 		if ( $connectBtn.addEventListener ){
 			$connectBtn.addEventListener( 'click' , initSocket , false );
@@ -33,12 +35,13 @@ var ThreePin = (function(){
 			$connectBtn.attachEvent( 'onclick' , initSocket );
 		}
 
+		// init status
+		status = STATUS.DISCONNECTED;
+
 	}
 
 	function initSocket(){
 		var connectionString;
-
-		socketStatusHandler( STATUS.CONNECTING );
 
 		// store address ad port value
 		url		= $addressField.value;
@@ -47,8 +50,10 @@ var ThreePin = (function(){
 		// build connection string
 		connectionString = url+":"+port;
 
+		socketStatusHandler( STATUS.CONNECTING );
+
 		// connect and bind events
-		socket = io.connect( connectionString);
+		socket = io.connect( connectionString );
 		socket.on('connect', function () {
 			socketStatusHandler( STATUS.CONNECTED );
 		});
@@ -59,24 +64,34 @@ var ThreePin = (function(){
 	}
 
 	// TO-DO : usare classList per modificare status ui. funzione o parte o all'interno dell'handler?
-	function socketStatusHandler( status ){
-		switch( status ){
+	function socketStatusHandler( newStatus ){
+		var connectionString = url+":"+port;
+
+		switch( newStatus ){
 
 			case STATUS.CONNECTED :
 				log( 'Connection to: '+connectionString );
-
+				socketStatusUpdate( STATUS.CONNECTED );
 			break;
 
 			case STATUS.CONNECTING :
-				log( 'Connection to: '+connectionString );
-
+				log( 'Connecting to: '+connectionString );
+				socketStatusUpdate( STATUS.CONNECTING );
 			break;
 
 			case STATUS.DISCONNECTED :
 				log( 'Disconnected from: '+connectionString );
+				socketStatusUpdate( STATUS.DISCONNECTED );
 			break;
 
 		}
+	}
+
+	function socketStatusUpdate( newStatus ){
+
+		$statusSection.classList.remove( STATUS_LOOKUP[status] );
+		$statusSection.classList.add( STATUS_LOOKUP[newStatus] );
+		status = newStatus;
 	}
 
 	init();
