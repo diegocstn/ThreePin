@@ -1,0 +1,8 @@
+{
+	"listen"	: [ "event1" , "event2" ],
+	"emit"		: [
+					{ "eventEmit1" : "eventEmitValue1" },
+					{ "eventEmit2" : "eventEmitValue2" },
+					{ "eventEmit3" : "eventEmitValue3" }
+	]
+}

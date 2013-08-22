@@ -1,3 +1,5 @@
+/* global io */
+
 var ThreePin = (function(){
 	var $doc	= document,
 		$addressField,
@@ -6,7 +8,6 @@ var ThreePin = (function(){
 		socket,
 		url,
 		port,
-		connect,
 		status,
 		$statusSection,
 		DEBUG	= true,
@@ -17,12 +18,35 @@ var ThreePin = (function(){
 		},
 		STATUS_LOOKUP = ['disconnected','connecting','connected'];
 
+	/**
+	* Logger Wrapper
+	*
+	* @method log
+	* @param {Object} arg Object to log with console.log
+	*/
+
 	function log(arg){
 		if ( DEBUG ){
 			console.log( arg );
 		}
 	}
 
+	/**
+	* Load configuration file( threepin.json )
+	*
+	* @method loadConfig
+	*
+	*/
+	function loadConfig(){
+
+	}
+
+	/**
+	* ThreePin initializer, cache selectors and add event listeners
+	*
+	* @method init
+	*
+	*/
 	function init(){
 		$addressField	= $doc.querySelector( '#conf-url' );
 		$portField		= $doc.querySelector( '#conf-port' );
@@ -31,7 +55,7 @@ var ThreePin = (function(){
 
 		if ( $connectBtn.addEventListener ){
 			$connectBtn.addEventListener( 'click' , initSocket , false );
-		} else if (el.attachEvent){
+		} else if ($connectBtn.attachEvent){
 			$connectBtn.attachEvent( 'onclick' , initSocket );
 		}
 
@@ -40,6 +64,12 @@ var ThreePin = (function(){
 
 	}
 
+	/**
+	* Init a new socket and bind basic listener on it
+	*
+	* @method init
+	*
+	*/
 	function initSocket(){
 		var connectionString;
 
@@ -63,6 +93,13 @@ var ThreePin = (function(){
 		});
 	}
 
+	/**
+	* Socket status handler
+	*
+	* @method socketStatusHandler
+	* @param {Int} newStatus new status value
+	*
+	*/
 	function socketStatusHandler( newStatus ){
 		var connectionString = url+":"+port;
 
@@ -86,12 +123,21 @@ var ThreePin = (function(){
 		}
 	}
 
+	/**
+	* Update the socket status and relative UI
+	*
+	* @method socketStatusUpdate
+	* @param {Int} newStatus new status value
+	*
+	*/
 	function socketStatusUpdate( newStatus ){
 
 		$statusSection.classList.remove( STATUS_LOOKUP[status] );
 		$statusSection.classList.add( STATUS_LOOKUP[newStatus] );
 		status = newStatus;
 	}
+
+
 
 	init();
 
