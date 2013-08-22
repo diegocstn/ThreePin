@@ -1,8 +1,19 @@
 {
+	"serverUrl"		: "http://127.0.0.1",
+	"serverPort"	: 5454,
 	"listen"	: [ "event1" , "event2" ],
 	"emit"		: [
-					{ "eventEmit1" : "eventEmitValue1" },
-					{ "eventEmit2" : "eventEmitValue2" },
-					{ "eventEmit3" : "eventEmitValue3" }
+					{
+						"name"	: "eventEmit1",
+						"data"	: {}
+					},
+					{
+						"name"	: "eventEmit2",
+						"data"	: {}
+					},
+					{
+						"name"	: "eventEmit3",
+						"data"	: {}
+					}
 	]
 }

@@ -9,6 +9,7 @@ var ThreePin = (function(){
 		url,
 		port,
 		status,
+		conf,
 		$statusSection,
 		DEBUG	= true,
 		STATUS	= {
@@ -38,7 +39,24 @@ var ThreePin = (function(){
 	*
 	*/
 	function loadConfig(){
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if( xhr.readyState < 4 ){
+				return;
+			}
 
+			if( xhr.status !== 200 ){
+				throw new Error('ThreePin.js : configuration file not found');
+			}
+
+			if( xhr.readyState === 4 ){
+				conf = JSON.parse( xhr.response );
+				initAsync();
+			}
+		};
+
+		xhr.open('GET', './threepin.json', true);
+		xhr.send('');
 	}
 
 	/**
@@ -62,7 +80,28 @@ var ThreePin = (function(){
 		// init status
 		status = STATUS.DISCONNECTED;
 
+		// load configuration file
+		loadConfig();
+
 	}
+
+	/**
+	* Initializer method, invocked when the configuration file is loaded
+	*
+	* @method initAsync
+	*
+	*/
+	function initAsync(){
+		// set-up port and url if are present in the configuration file
+		if( conf.serverPort ){
+			$portField.setAttribute( 'value' , conf.serverPort );
+		}
+
+		if( conf.serverUrl ){
+			$addressField.setAttribute( 'value' , conf.serverUrl );
+		}
+	}
+
 
 	/**
 	* Init a new socket and bind basic listener on it
