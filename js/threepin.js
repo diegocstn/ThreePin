@@ -100,6 +100,9 @@ var ThreePin = (function(){
 		if( conf.serverUrl ){
 			$addressField.setAttribute( 'value' , conf.serverUrl );
 		}
+
+		// TO_DO :	scorrere array emit e popolare lista con nome e data
+		//			visualizzazione JSON?
 	}
 
 
