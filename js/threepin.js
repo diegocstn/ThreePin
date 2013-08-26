@@ -255,6 +255,8 @@ var ThreePin = (function(){
 		}else{
 			log( 'Nothing to do here my friend!' );
 		}
+
+		// TO-DO : testing emit
 	}
 
 
