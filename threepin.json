@@ -5,15 +5,27 @@
 	"emit"		: [
 					{
 						"name"	: "eventEmit1",
-						"data"	: {}
+						"data"	: {
+							"key1-1" : "param1-1",
+							"key1-2" : "param1-2",
+							"key1-3" : "param1-3"
+						}
 					},
 					{
 						"name"	: "eventEmit2",
-						"data"	: {}
+						"data"	: {
+							"key2-1" : "param2-1",
+							"key2-2" : "param2-2",
+							"key2-3" : "param2-3"
+						}
 					},
 					{
 						"name"	: "eventEmit3",
-						"data"	: {}
+						"data"	: {
+							"key3-1" : "param3-1",
+							"key3-2" : "param3-2",
+							"key3-3" : "param3-3"
+						}
 					}
 	]
 }

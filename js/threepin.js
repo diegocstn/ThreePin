@@ -10,7 +10,11 @@ var ThreePin = (function(){
 		port,
 		status,
 		conf,
+		eventsToEmit,
+		eventsToListen,
 		$statusSection,
+		$eventsEmitList,
+		$eventsListenList,
 		DEBUG	= true,
 		STATUS	= {
 			CONNECTING		: 1,
@@ -70,6 +74,7 @@ var ThreePin = (function(){
 		$portField		= $doc.querySelector( '#conf-port' );
 		$connectBtn		= $doc.querySelector( '#conf button' );
 		$statusSection	= $doc.querySelector( '#status' );
+		$eventsEmitList	= $doc.querySelector( '.event-emit-list' );
 
 		if ( $connectBtn.addEventListener ){
 			$connectBtn.addEventListener( 'click' , initSocket , false );
@@ -79,6 +84,9 @@ var ThreePin = (function(){
 
 		// init status
 		status = STATUS.DISCONNECTED;
+
+		// init events storage
+		eventsToEmit = [];
 
 		// load configuration file
 		loadConfig();
@@ -101,9 +109,60 @@ var ThreePin = (function(){
 			$addressField.setAttribute( 'value' , conf.serverUrl );
 		}
 
-		// TO_DO :	scorrere array emit e popolare lista con nome e data
-		//			visualizzazione JSON?
+		// build events list
+		buildEventsEmit();
 	}
+
+	/**
+	* Build list of event to emit
+	*
+	* @method buildEventsEmit
+	*
+	*/
+	function buildEventsEmit(){
+		var frag = $doc.createDocumentFragment(),
+			dt,dd,pre,btn,index = 0;
+		conf.emit.map(function(e){
+			// push event into the array of event to emit
+			eventsToEmit.push({
+				name	: e.name,
+				data	: e.data
+			});
+
+			// build html
+			dt	= $doc.createElement( 'dt' );
+			dd	= $doc.createElement( 'dd' );
+			pre	= $doc.createElement( 'pre');
+			btn	= $doc.createElement( 'button' );
+
+			dt.innerHTML	= e.name;
+			pre.innerHTML	= JSON.stringify(e.data);
+
+			btn.innerHTML	= "SEND";
+			btn.classList.add( 'event-emit-btn' );
+			btn.setAttribute( 'data-evt' , index );
+
+			dd.appendChild( pre );
+			dd.appendChild(btn);
+
+			frag.appendChild(dt);
+			frag.appendChild(dd);
+
+			index +=1;
+
+		});
+
+		$eventsEmitList.appendChild(frag);
+
+		$eventsEmitList.addEventListener( 'click' , function(e){
+			if( e.target.nodeName === "BUTTON" ){
+				emitEvent( e.target.getAttribute('data-evt') );
+			}
+
+		});
+
+	}
+
 
 
 	/**
@@ -177,6 +236,25 @@ var ThreePin = (function(){
 		$statusSection.classList.remove( STATUS_LOOKUP[status] );
 		$statusSection.classList.add( STATUS_LOOKUP[newStatus] );
 		status = newStatus;
+	}
+
+	/**
+	* Emit specific event
+	*
+	* @method emitEvent
+	* @param {Int} eventIndex event index
+	*
+	*/
+
+	function emitEvent( eventIndex ){
+		// emit event only if there's a socket opened
+		if( status === STATUS.CONNECTED ){
+			var evt = eventsToEmit[eventIndex];
+			socket.emit( evt.name , evt.data );
+			log( 'Emit event : ' + evt.name );
+		}else{
+			log( 'Nothing to do here my friend!' );
+		}
 	}
 
 
