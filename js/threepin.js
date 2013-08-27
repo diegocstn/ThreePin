@@ -70,11 +70,12 @@ var ThreePin = (function(){
 	*
 	*/
 	function init(){
-		$addressField	= $doc.querySelector( '#conf-url' );
-		$portField		= $doc.querySelector( '#conf-port' );
-		$connectBtn		= $doc.querySelector( '#conf button' );
-		$statusSection	= $doc.querySelector( '#status' );
-		$eventsEmitList	= $doc.querySelector( '.event-emit-list' );
+		$addressField		= $doc.querySelector( '#conf-url' );
+		$portField			= $doc.querySelector( '#conf-port' );
+		$connectBtn			= $doc.querySelector( '#conf button' );
+		$statusSection		= $doc.querySelector( '#status' );
+		$eventsEmitList		= $doc.querySelector( '.event-emit-list' );
+		$eventsListenList	= $doc.querySelector( '.event-listen-list' );
 
 		if ( $connectBtn.addEventListener ){
 			$connectBtn.addEventListener( 'click' , initSocket , false );
@@ -86,7 +87,8 @@ var ThreePin = (function(){
 		status = STATUS.DISCONNECTED;
 
 		// init events storage
-		eventsToEmit = [];
+		eventsToEmit	= [];
+		eventsToListen	= [];
 
 		// load configuration file
 		loadConfig();
@@ -109,8 +111,11 @@ var ThreePin = (function(){
 			$addressField.setAttribute( 'value' , conf.serverUrl );
 		}
 
-		// build events list
+		// build events emit list
 		buildEventsEmit();
+
+		// build events listen list
+		buildEventsListen();
 	}
 
 	/**
@@ -161,6 +166,31 @@ var ThreePin = (function(){
 
 		});
 
+	}
+
+	/**
+	* Build list of event to listen onto
+	*
+	* @method buildEventsListen
+	*
+	*/
+	function buildEventsListen(){
+		var frag = $doc.createDocumentFragment(),
+			li;
+		conf.listen.map(function(e){
+			// push event into the array of event to emit
+			eventsToListen.push({
+				name	: e
+			});
+
+			// build html
+			li = $doc.createElement('li');
+			li.innerHTML = e;
+
+			frag.appendChild( li );
+		});
+
+		$eventsListenList.appendChild( frag );
 	}
 
 
@@ -218,6 +248,7 @@ var ThreePin = (function(){
 
 			case STATUS.DISCONNECTED :
 				log( 'Disconnected from: '+connectionString );
+				// TO-DO : force disconnect to avoid js error in console
 				socketStatusUpdate( STATUS.DISCONNECTED );
 			break;
 
@@ -255,8 +286,6 @@ var ThreePin = (function(){
 		}else{
 			log( 'Nothing to do here my friend!' );
 		}
-
-		// TO-DO : testing emit
 	}
 
 
