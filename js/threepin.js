@@ -222,6 +222,11 @@ var ThreePin = (function(){
 		socket.on('disconnect', function () {
 			socketStatusHandler( STATUS.DISCONNECTED );
 		});
+
+		// listen on custom event
+		for (var i = eventsToListen.length - 1; i >= 0; i--) {
+			socket.on( eventsToListen[i] , receiveEvent );
+		}
 	}
 
 	/**
@@ -286,6 +291,10 @@ var ThreePin = (function(){
 		}else{
 			log( 'Nothing to do here my friend!' );
 		}
+	}
+
+	function receiveEvent(evt){
+		// TO-DO
 	}
 
 
