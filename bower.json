@@ -8,7 +8,6 @@
     "components"
   ],
   "dependencies": {
-    "socket.io-client": "~0.9.16",
-    "prettyprint": "latest"
+    "socket.io-client": "~0.9.16"
   }
 }

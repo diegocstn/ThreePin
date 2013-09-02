@@ -141,7 +141,7 @@ var ThreePin = (function(){
 			btn	= $doc.createElement( 'button' );
 
 			dt.innerHTML	= e.name;
-			pre.innerHTML	= JSON.stringify(e.data);
+			pre.innerHTML	= JSON.stringify(e.data,null, '\t');
 
 			btn.innerHTML	= "SEND";
 			btn.classList.add( 'event-emit-btn' );
