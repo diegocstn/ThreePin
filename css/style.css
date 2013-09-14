@@ -8,7 +8,7 @@ body {
 h1 {
   text-align: center; }
 
-#event, #conf, #history {
+#event, #conf, #console {
   border: solid 1px #ccc;
   padding: 20px;
   margin: 20px; }
@@ -72,3 +72,14 @@ h1 {
 
 .status-pin li:last-child {
   margin-right: 0; }
+
+/* ==========================================================================
+   CONSOLE
+   ========================================================================== */
+#console {
+  background: #333;
+  font: 12px/14px Monaco;
+  color: #ddd;
+  height: 100px;
+  overflow: scroll;
+  padding: 0 20px; }

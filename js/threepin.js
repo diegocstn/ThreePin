@@ -12,10 +12,10 @@ var ThreePin = (function(){
 		conf,
 		eventsToEmit,
 		eventsToListen,
+		$console,
 		$statusSection,
 		$eventsEmitList,
 		$eventsListenList,
-		DEBUG	= true,
 		STATUS	= {
 			CONNECTING		: 1,
 			CONNECTED		: 2,
@@ -31,8 +31,21 @@ var ThreePin = (function(){
 	*/
 
 	function log(arg){
-		if ( DEBUG ){
-			console.log( arg );
+		var	line	= $doc.createElement( 'p' ),
+				date	= $doc.createElement( 'time' ),
+				txt		= $doc.createElement( 'span' );
+
+		date.innerHTML	= renderDate( new Date() );
+		txt.innerHTML		= arg;
+
+		line.appendChild( date );
+		line.appendChild( txt );
+
+		$console.appendChild( line );
+
+		// scroll to the last line if is needed
+		if( $console.scrollHeight > $console.clientHeight ){
+			$console.scrollTop = $console.scrollHeight;
 		}
 	}
 
@@ -70,12 +83,13 @@ var ThreePin = (function(){
 	*
 	*/
 	function init(){
-		$addressField		= $doc.querySelector( '#conf-url' );
-		$portField			= $doc.querySelector( '#conf-port' );
-		$connectBtn			= $doc.querySelector( '#conf button' );
+		$addressField			= $doc.querySelector( '#conf-url' );
+		$portField				= $doc.querySelector( '#conf-port' );
+		$connectBtn				= $doc.querySelector( '#conf button' );
 		$statusSection		= $doc.querySelector( '#status' );
 		$eventsEmitList		= $doc.querySelector( '.event-emit-list' );
 		$eventsListenList	= $doc.querySelector( '.event-listen-list' );
+		$console					= $doc.querySelector( '#console' );
 
 		if ( $connectBtn.addEventListener ){
 			$connectBtn.addEventListener( 'click' , initSocket , false );
@@ -293,12 +307,30 @@ var ThreePin = (function(){
 		}
 	}
 
+
 	function receiveEvent(evt){
 		// TO-DO
 	}
 
+	/**
+	* Helper fun to render date in a human readable format
+	*
+	* @method renderDate
+	* @param {Date} date Date Object to render
+	* @return {String} string representation of the date obj
+	*
+	*/
+	function renderDate( date ){
+		var d = (date.getFullYear()) + '/' + (date.getMonth()+1) + '/' + date.getDate(),
+				t = '['+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+']';
+		return d+'\t'+t+'\t';
+	}
 
 
 	init();
+
+	return{
+		log : log
+	};
 
 })();

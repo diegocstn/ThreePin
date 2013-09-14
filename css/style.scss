@@ -14,7 +14,7 @@
 		text-align: center;
 	}
 
-	#event,#conf,#history{
+	#event,#conf,#console{
 		border: solid 1px #ccc;
 		padding: 20px;
 		margin: 20px;
@@ -90,5 +90,27 @@
 		margin-right: 0;
 	}
 
+/* ==========================================================================
+   CONSOLE
+   ========================================================================== */
+   #console{
+		background: #333;
+		font: 12px/14px Monaco;
+		color: #ddd;
+		height: 100px;
+		overflow: scroll;
+		padding: 0 20px;
+   }
+
+   #console p{}
+   // #console p time{
+   // 	display: block;
+   // 	float: left;
+
+   // }
+   // #console p span{
+   // 	display: block;
+   // 	float: left;
+   // }
 
 
