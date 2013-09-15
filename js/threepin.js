@@ -21,7 +21,10 @@ var ThreePin = (function(){
 			CONNECTED		: 2,
 			DISCONNECTED	: 0
 		},
-		STATUS_LOOKUP = ['disconnected','connecting','connected'];
+		STATUS_LOOKUP = ['disconnected','connecting','connected'],
+		ERRORS_ENUM		= {
+			CONFIG_ERROR : "Configuration error "
+		};
 
 	/**
 	* Logger Wrapper
@@ -68,6 +71,7 @@ var ThreePin = (function(){
 
 			if( xhr.readyState === 4 ){
 				conf = JSON.parse( xhr.response );
+				log( 'Config loaded' );
 				initAsync();
 			}
 		};
@@ -130,6 +134,8 @@ var ThreePin = (function(){
 
 		// build events listen list
 		buildEventsListen();
+
+		log( 'System ready' );
 	}
 
 	/**
@@ -237,9 +243,19 @@ var ThreePin = (function(){
 			socketStatusHandler( STATUS.DISCONNECTED );
 		});
 
+		socket.on('error',function(err){
+			console.log(err);
+			log( 'Connection error' );
+		});
+
 		// listen on custom event
 		for (var i = eventsToListen.length - 1; i >= 0; i--) {
-			socket.on( eventsToListen[i] , receiveEvent );
+			// socket.on( eventsToListen[i].name , function( data ){
+			// 	receiveEvent( 'no' , data );
+			// });
+			bindOnEvent( eventsToListen[i].name , function(data){
+				receiveEvent( data );
+			});
 		}
 	}
 
@@ -308,8 +324,31 @@ var ThreePin = (function(){
 	}
 
 
-	function receiveEvent(evt){
-		// TO-DO
+	/**
+	* Bind on specific listen event
+	*
+	* @method bindOnEvent
+	* @param {String} eventName event name
+	* @param {Function} fn callback function
+	*
+	*/
+
+	function bindOnEvent( eventName , fn ){
+		socket.on( eventName , function( eventData ){
+			log( 'Received event : ' + eventName );
+			fn( eventData );
+		});
+	}
+
+	/**
+	* Receive data for specifically event and display in console
+	*
+	* @method emitEvent
+	* @param {Object} eventData event data
+	*
+	*/
+	function receiveEvent( eventData ){
+		log( 'Data :' + JSON.stringify(eventData,null, '\t') );
 	}
 
 	/**
@@ -324,6 +363,20 @@ var ThreePin = (function(){
 		var d = (date.getFullYear()) + '/' + (date.getMonth()+1) + '/' + date.getDate(),
 				t = '['+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+']';
 		return d+'\t'+t+'\t';
+	}
+
+	/**
+	* Helper function to throws errors
+	*
+	* @method throwError
+	* @param {String} errorType Error type
+	* @param {String} customMessage specific error message
+	*
+	*/
+	function throwError( errorType , customMessage ){
+		var errMessage = '[ ThreePinJs ] ';
+		errMessage += ( customMessage ) ? ERRORS_ENUM[errorType] + customMessage : ERRORS_ENUM[errorType];
+		throw new Error( errMessage );
 	}
 
 
