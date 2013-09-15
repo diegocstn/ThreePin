@@ -18,7 +18,7 @@ var ThreePin = (function(){
 		$eventsListenList,
 		STATUS	= {
 			CONNECTING		: 1,
-			CONNECTED		: 2,
+			CONNECTED			: 2,
 			DISCONNECTED	: 0
 		},
 		STATUS_LOOKUP = ['disconnected','connecting','connected'],
@@ -96,9 +96,9 @@ var ThreePin = (function(){
 		$console					= $doc.querySelector( '#console' );
 
 		if ( $connectBtn.addEventListener ){
-			$connectBtn.addEventListener( 'click' , initSocket , false );
+			$connectBtn.addEventListener( 'click' , buttonConnectHandler , false );
 		} else if ($connectBtn.attachEvent){
-			$connectBtn.attachEvent( 'onclick' , initSocket );
+			$connectBtn.attachEvent( 'onclick' , buttonConnectHandler );
 		}
 
 		// init status
@@ -213,6 +213,22 @@ var ThreePin = (function(){
 		$eventsListenList.appendChild( frag );
 	}
 
+	/**
+	* Button actions handler
+	*
+	* @method buttonConnectHandler
+	*
+	*/
+
+	function buttonConnectHandler(){
+		if( status === STATUS.DISCONNECTED ){
+			initSocket();
+			$connectBtn.innerHTML = "Disconnect";
+		}else{
+			closeSocket();
+			$connectBtn.innerHTML = "Connect";
+		}
+	}
 
 
 	/**
@@ -244,19 +260,25 @@ var ThreePin = (function(){
 		});
 
 		socket.on('error',function(err){
-			console.log(err);
 			log( 'Connection error' );
 		});
 
 		// listen on custom event
 		for (var i = eventsToListen.length - 1; i >= 0; i--) {
-			// socket.on( eventsToListen[i].name , function( data ){
-			// 	receiveEvent( 'no' , data );
-			// });
 			bindOnEvent( eventsToListen[i].name , function(data){
 				receiveEvent( data );
 			});
 		}
+	}
+
+	/**
+	* Close current socket
+	*
+	* @method closeSocket
+	*
+	*/
+	function closeSocket(){
+		socket.disconnect();
 	}
 
 	/**
@@ -383,7 +405,9 @@ var ThreePin = (function(){
 	init();
 
 	return{
-		log : log
+		log			: log,
+		listen	: eventsToListen,
+		emit		: eventsToEmit
 	};
 
 })();
