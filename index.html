@@ -12,37 +12,43 @@
         <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <h1>ThreePin - A Socket.IO client debugger</h1>
+        <main>
+            <h1>ThreePin - A Socket.IO client debugger</h1>
 
-        <section id="status" class="disconnected">
-            <div class="status-badge">
-                <ul class="status-pin">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-            </div>
-        </section>
+            <section id="status" class="disconnected">
+                <div class="status-badge">
+                    <ul class="status-pin">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </section>
 
-        <section id="conf">
-            <input type="url" id="conf-url" name="conf-url" placeholder="Server Url" >
-            <input type="text" id="conf-port" name="conf-port" placeholder="Server Port">
-            <button>Connect</button>
-        </section>
+            <section id="conf" class="section-banner">
+                <dl class="conf-list">
+                    <dt>Server URL</dt>
+                    <dd id="conf-url"></dd>
 
-        <section id="console"></section>
+                    <dt>Server Port</dt>
+                    <dd id="conf-port"></dd>
+                </dl>
+                <button class="btn btn-gray">Connect</button>
+            </section>
 
-        <section id="event-emit">
-            <h3>EMIT:</h3>
-            <dl class="event-emit-list"></dl>
+            <section id="console" class="section-banner"></section>
 
-        </section>
+            <section id="event-emit" class="section-col50">
+                <h3>EMIT:</h3>
+                <dl class="event-emit-list"></dl>
 
-        <section id="event-listen">
-            <h3>LISTEN:</h3>
-            <ul class="event-listen-list"></ul>
-        </section>
+            </section>
 
+            <section id="event-listen" class="section-col50">
+                <h3>LISTEN:</h3>
+                <ul class="event-listen-list"></ul>
+            </section>
+        </main>
     </body>
     <script type="text/javascript" src="js/threepin.js"></script>
     <script type="text/javascript" src="components/socket.io-client/dist/socket.io.min.js"></script>

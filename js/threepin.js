@@ -101,6 +101,8 @@ var ThreePin = (function(){
 			$connectBtn.attachEvent( 'onclick' , buttonConnectHandler );
 		}
 
+		log( '**** ThreePin Console ****' );
+
 		// init status
 		status = STATUS.DISCONNECTED;
 
@@ -120,13 +122,12 @@ var ThreePin = (function(){
 	*
 	*/
 	function initAsync(){
-		// set-up port and url if are present in the configuration file
 		if( conf.serverPort ){
-			$portField.setAttribute( 'value' , conf.serverPort );
+			$portField.innerHTML = conf.serverPort;
 		}
 
 		if( conf.serverUrl ){
-			$addressField.setAttribute( 'value' , conf.serverUrl );
+			$addressField.innerHTML = conf.serverUrl;
 		}
 
 		// build events emit list
@@ -164,11 +165,13 @@ var ThreePin = (function(){
 			pre.innerHTML	= JSON.stringify(e.data,null, '\t');
 
 			btn.innerHTML	= "SEND";
-			btn.classList.add( 'event-emit-btn' );
+			btn.classList.add( 'btn-event-emit' );
+			btn.classList.add( 'btn' );
+			btn.classList.add( 'btn-green' );
 			btn.setAttribute( 'data-evt' , index );
 
 			dd.appendChild( pre );
-			dd.appendChild(btn);
+			dt.appendChild(btn);
 
 			frag.appendChild(dt);
 			frag.appendChild(dd);
@@ -241,8 +244,8 @@ var ThreePin = (function(){
 		var connectionString;
 
 		// store address ad port value
-		url		= $addressField.value;
-		port	= $portField.value;
+		url		= $addressField.innerText;
+		port	= $portField.innerText;
 
 		// build connection string
 		connectionString = url+":"+port;

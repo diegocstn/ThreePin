@@ -5,13 +5,64 @@ body {
   font: 1em/1.5em Helvetica Neue,Helvetica,sans-serif;
   color: #333; }
 
+main {
+  display: block;
+  width: 80%;
+  margin: 0 auto; }
+
 h1 {
   text-align: center; }
 
-#event, #conf, #console {
-  border: solid 1px #ccc;
-  padding: 20px;
-  margin: 20px; }
+section {
+  padding: 4%; }
+
+.section-banner {
+  width: 92%;
+  clear: both; }
+
+.section-col50 {
+  float: left;
+  width: 42%; }
+
+.section-col50 + .section-col50 {
+  padding-left: 0; }
+
+.btn {
+  display: inline-block;
+  height: 30px;
+  padding: 0 10px;
+  font-size: 13px;
+  font-family: Helvetica Neue,Helvetica,sans-serif;
+  border-radius: 2px;
+  cursor: pointer; }
+
+.btn-gray {
+  background: #969696;
+  color: #fff;
+  border: solid 1px #808080; }
+
+.btn-green {
+  background: #98c908;
+  color: #fff;
+  border: solid 1px #3f5304; }
+
+/* ==========================================================================
+   CONF
+   ========================================================================== */
+#conf dl dt {
+  font-weight: bold;
+  float: left;
+  min-width: 100px; }
+
+#conf button,
+#conf dl {
+  float: left; }
+
+#conf dl {
+  width: 40%; }
+
+#conf button {
+  margin-top: 20px; }
 
 /* ==========================================================================
    STATUS
@@ -82,4 +133,5 @@ h1 {
   color: #ddd;
   height: 100px;
   overflow: scroll;
-  padding: 0 20px; }
+  padding-top: 1%;
+  padding-bottom: 1%; }
