@@ -4,13 +4,15 @@
    body{
    	font: 1em/1.5em Helvetica Neue,Helvetica,sans-serif;
    	color: #333;
+   	font-weight: 200;
 	}
 
 	$color-connected 	: #98c908;
 	$color-disconnected	: #b20303;
 	$color-connecting	: #fea00d;
 
-	$padding : 4%;
+	$padding				: 4%;
+	$marginElement	: 10px;
 
 	main{
 		display: block;
@@ -20,6 +22,13 @@
 
 	h1{
 		text-align: center;
+		font-weight: 300;
+	}
+
+	h3{
+		font-weight: 300;
+		border-bottom: solid 1px #ccc;
+		padding-bottom: 10px;
 	}
 
 	section{
@@ -41,18 +50,16 @@
 		display: inline-block;
 		height: 30px;
 		padding: 0 10px;
-		font-size: 13px;
+		font-size: 14px;
 		font-family: Helvetica Neue,Helvetica,sans-serif;
-
-		border-radius: 2px;
-
+		font-weight: 200;
 		cursor: pointer;
 	}
 
 	.btn-gray{
-		background: #969696;
+		background: #2597d8;
 		color: #fff;
-		border:solid 1px #808080;
+		border:solid 1px #0089d8;
 	}
 
 	.btn-green{
@@ -154,6 +161,30 @@
 	.status-pin li:last-child{
 		margin-right: 0;
 	}
+
+/* ==========================================================================
+   CONSOLE
+   ========================================================================== */
+
+ .event-emit-list{
+ 		dt{
+ 			clear: both;
+ 			margin-bottom: $marginElement;
+ 			border-bottom: solid 1px #eee;
+ 			height: 50px;
+ 			line-height: 50px;
+ 		}
+ 		dt button{
+ 			float: right;
+ 			margin-top: 10px;
+ 		}
+
+ 		dd{
+ 			height: 0;
+ 			max-height: 100px;
+ 			overflow: hidden;
+ 		}
+ }
 
 /* ==========================================================================
    CONSOLE

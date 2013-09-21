@@ -164,10 +164,10 @@ var ThreePin = (function(){
 			dt.innerHTML	= e.name;
 			pre.innerHTML	= JSON.stringify(e.data,null, '\t');
 
-			btn.innerHTML	= "SEND";
+			btn.innerHTML	= "Send";
 			btn.classList.add( 'btn-event-emit' );
 			btn.classList.add( 'btn' );
-			btn.classList.add( 'btn-green' );
+			btn.classList.add( 'btn-gray' );
 			btn.setAttribute( 'data-evt' , index );
 
 			dd.appendChild( pre );
@@ -264,6 +264,8 @@ var ThreePin = (function(){
 
 		socket.on('error',function(err){
 			log( 'Connection error' );
+			socketStatusUpdate( STATUS.DISCONNECTED );
+			socket = null;
 		});
 
 		// listen on custom event
