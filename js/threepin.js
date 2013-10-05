@@ -23,7 +23,8 @@ var ThreePin = (function(){
 		},
 		STATUS_LOOKUP = ['disconnected','connecting','connected'],
 		ERRORS_ENUM		= {
-			CONFIG_ERROR : "Configuration error "
+			CONFIG_NOTFOUND : "Configuration file not found",
+			CONFIG_ERROR		: "Configuration error "
 		};
 
 	/**
@@ -66,7 +67,8 @@ var ThreePin = (function(){
 			}
 
 			if( xhr.status !== 200 ){
-				throw new Error('ThreePin.js : configuration file not found');
+				log( 'Config file threeping.json not found' );
+				throwError( ERRORS_ENUM.CONFIG_NOTFOUND );
 			}
 
 			if( xhr.readyState === 4 ){
@@ -402,7 +404,7 @@ var ThreePin = (function(){
 	*/
 	function throwError( errorType , customMessage ){
 		var errMessage = '[ ThreePinJs ] ';
-		errMessage += ( customMessage ) ? ERRORS_ENUM[errorType] + customMessage : ERRORS_ENUM[errorType];
+		errMessage += ( customMessage ) ? errorType + customMessage : errorType;
 		throw new Error( errMessage );
 	}
 

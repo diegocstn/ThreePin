@@ -14,6 +14,20 @@
 	$padding				: 4%;
 	$marginElement	: 10px;
 
+	.cf:before,
+	.cf:after {
+	    content: " ";
+	    display: table;
+	}
+
+	.cf:after {
+	    clear: both;
+	}
+
+	.cf {
+	    *zoom: 1;
+	}
+
 	main{
 		display: block;
 		width: 80%;
@@ -32,19 +46,19 @@
 	}
 
 	section{
-		padding: $padding;
+		padding: $padding 0;
 	}
 
 	.section-banner{
-		width: 100% - (2*$padding);
+		width: 100%;
 		clear: both;
 	}
 	.section-col50{
 		float: left;
-		width: 50% - (2*$padding);
+		width: 50% - ($padding);
 	}
 
-	.section-col50+.section-col50{ padding-left: 0; }
+	.section-col50+.section-col50{ padding-left: 2*$padding; }
 
 	.btn{
 		display: inline-block;
@@ -99,8 +113,9 @@
 	#status{
 		margin: 0 auto;
 		width: 150px;
-		height: 150px;
+		height: 140px;
 		text-align: center;
+		padding-bottom: 0;
 	}
 
 	#status.connected{
@@ -200,7 +215,9 @@
 		padding-bottom: 1%;
    }
 
-   #console p{}
+   #console p{
+   	padding-left: $padding;
+   }
    // #console p time{
    // 	display: block;
    // 	float: left;

@@ -6,6 +6,17 @@ body {
   color: #333;
   font-weight: 200; }
 
+.cf:before,
+.cf:after {
+  content: " ";
+  display: table; }
+
+.cf:after {
+  clear: both; }
+
+.cf {
+  *zoom: 1; }
+
 main {
   display: block;
   width: 80%;
@@ -21,18 +32,18 @@ h3 {
   padding-bottom: 10px; }
 
 section {
-  padding: 4%; }
+  padding: 4% 0; }
 
 .section-banner {
-  width: 92%;
+  width: 100%;
   clear: both; }
 
 .section-col50 {
   float: left;
-  width: 42%; }
+  width: 46%; }
 
 .section-col50 + .section-col50 {
-  padding-left: 0; }
+  padding-left: 8%; }
 
 .btn {
   display: inline-block;
@@ -77,8 +88,9 @@ section {
 #status {
   margin: 0 auto;
   width: 150px;
-  height: 150px;
-  text-align: center; }
+  height: 140px;
+  text-align: center;
+  padding-bottom: 0; }
 
 #status.connected {
   color: #98c908;
@@ -159,3 +171,6 @@ section {
   overflow: scroll;
   padding-top: 1%;
   padding-bottom: 1%; }
+
+#console p {
+  padding-left: 4%; }
