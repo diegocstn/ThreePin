@@ -18,7 +18,9 @@
     "client",
     "test",
     "socket.io",
-    "env"
+    "env",
+    "websocket debug",
+    "debug"
   ],
   "devDependencies" : {
                         "socket.io" : "0.9.12"

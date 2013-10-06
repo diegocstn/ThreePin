@@ -345,7 +345,11 @@ var ThreePin = (function(){
 		// emit event only if there's a socket opened
 		if( status === STATUS.CONNECTED ){
 			var evt = eventsToEmit[eventIndex];
-			socket.emit( evt.name , evt.data );
+			if( evt.data ){
+				socket.emit( evt.name , evt.data );
+			}else{
+				socket.emit( evt.name );
+			}
 			log( 'Emit event : ' + evt.name );
 		}else{
 			log( 'Nothing to do here my friend!' );
