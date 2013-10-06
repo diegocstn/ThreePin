@@ -1,5 +1,5 @@
 {
-  "name": "ThreePin",
+  "name": "threepin",
   "version": "1.0.0",
   "description": "A Node.JS and Socket.IO stress-free test environment",
   "main": "server/index.js",
