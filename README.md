@@ -93,4 +93,3 @@ This is a full example of configuration file
 2. Fill the configuration file with your events and data
 2. Fire up a local server ( [SimpleHTTPServer](http://docs.python.org/2/library/simplehttpserver.html) is awesome for me ) and load the index.html on your favourite browser
 3. Debug and enjoy
-##
