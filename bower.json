@@ -1,8 +1,9 @@
 {
-  "name": "ThreePin",
-  "version": "1.0.0",
-  "main": "index.html",
-  "ignore": [
+  "name"    : "ThreePin",
+  "version" : "1.0.0",
+  "main"    : "index.html",
+  "license" : "MIT",
+  "ignore"  : [
     "**/.*",
     "node_modules",
     "components"
