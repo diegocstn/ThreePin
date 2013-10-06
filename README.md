@@ -14,12 +14,12 @@ git clone https://github.com/dieguitoweb/ThreePin.git threepin
 
 ### NPM
 ```
-npm install
+npm install threepin
 ```
 
 ### Bower
 ```
-bower install
+bower install threepin
 ```
 
 ## Configuration
