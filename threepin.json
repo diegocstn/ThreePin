@@ -20,12 +20,7 @@
 						}
 					},
 					{
-						"name"	: "eventEmit3",
-						"data"	: {
-							"key3-1" : "param3-1",
-							"key3-2" : "param3-2",
-							"key3-3" : "param3-3"
-						}
+						"name"	: "eventEmit3"
 					}
 	]
 }

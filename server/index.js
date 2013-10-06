@@ -20,4 +20,8 @@ io.sockets.on('connection', function (socket) {
 		},5000);
   });
 
+  socket.on( 'eventEmit3' , function(data){
+		console.log( 'eventEmit3 received' );
+  });
+
 });
