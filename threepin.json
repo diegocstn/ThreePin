@@ -10,14 +10,24 @@
   }, {
     "name": "api",
     "data": {
-      "op": "create",
-      "payload": "payload 1"
+      "op": "login"
     }
   }, {
     "name": "api",
     "data": {
       "op": "create",
-      "payload": "payload 2"
+      "payload": "payload of create"
+    }
+  }, {
+    "name": "api",
+    "data": {
+      "op": "find",
+      "payload": "payload of find"
+    }
+  }, {
+    "name": "api",
+    "data": {
+      "op": "logout"
     }
   }]
 }
