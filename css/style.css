@@ -151,7 +151,8 @@ section {
   margin-bottom: 10px;
   border-bottom: solid 1px #eee;
   height: 50px;
-  line-height: 50px; }
+  line-height: 50px;
+  cursor: pointer; }
 .event-emit-list dt button {
   float: right;
   margin-top: 10px; }
@@ -159,6 +160,9 @@ section {
   height: 0;
   max-height: 100px;
   overflow: hidden; }
+.event-emit-list dt.event-emit_open + dd {
+  height: auto;
+  overflow: scroll; }
 
 /* ==========================================================================
    CONSOLE

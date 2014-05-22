@@ -188,6 +188,7 @@
  			border-bottom: solid 1px #eee;
  			height: 50px;
  			line-height: 50px;
+            cursor: pointer;
  		}
  		dt button{
  			float: right;
@@ -199,6 +200,11 @@
  			max-height: 100px;
  			overflow: hidden;
  		}
+
+        dt.event-emit_open+dd{
+          height: auto;
+          overflow: scroll;
+        }
  }
 
 /* ==========================================================================

@@ -189,6 +189,10 @@ var ThreePin = (function(){
 				emitEvent( e.target.getAttribute('data-evt') );
 			}
 
+      if( e.target.nodeName === "DT" ){
+        e.target.classList.toggle("event-emit_open");
+      }
+
 		});
 
 	}

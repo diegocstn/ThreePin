@@ -17,6 +17,9 @@ npm-debug.log
 # Mac OS X Finder and whatnot
 .DS_Store
 
+# Webstorm
+.idea
+
 # Other source repository archive directories (protects when importing)
 .hg
 .svn
