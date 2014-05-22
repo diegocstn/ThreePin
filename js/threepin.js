@@ -163,7 +163,7 @@ var ThreePin = (function(){
 			pre	= $doc.createElement( 'pre');
 			btn	= $doc.createElement( 'button' );
 
-			dt.innerHTML	= e.name;
+			dt.innerHTML	= e.name + ': ' + e.data.op;
 			pre.innerHTML	= JSON.stringify(e.data,null, '\t');
 
 			btn.innerHTML	= "Send";
