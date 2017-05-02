@@ -1,26 +1,33 @@
 {
-	"serverUrl"		: "http://127.0.0.1",
-	"serverPort"	: 5454,
-	"listen"	: [ "eventOn1" , "eventOn2" ],
-	"emit"		: [
-					{
-						"name"	: "eventEmit1",
-						"data"	: {
-							"key1-1" : "param1-1",
-							"key1-2" : "param1-2",
-							"key1-3" : "param1-3"
-						}
-					},
-					{
-						"name"	: "eventEmit2",
-						"data"	: {
-							"key2-1" : "param2-1",
-							"key2-2" : "param2-2",
-							"key2-3" : "param2-3"
-						}
-					},
-					{
-						"name"	: "eventEmit3"
-					}
-	]
+  "serverUrl": "http://localhost",
+  "serverPort": 4444,
+  "listen": ["api"],
+  "emit": [{
+    "name": "api",
+    "data": {
+      "op": "version"
+    }
+  }, {
+    "name": "api",
+    "data": {
+      "op": "login"
+    }
+  }, {
+    "name": "api",
+    "data": {
+      "op": "create",
+      "payload": "payload of create"
+    }
+  }, {
+    "name": "api",
+    "data": {
+      "op": "find",
+      "payload": "payload of find"
+    }
+  }, {
+    "name": "api",
+    "data": {
+      "op": "logout"
+    }
+  }]
 }
